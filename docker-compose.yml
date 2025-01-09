@@ -1,0 +1,51 @@
+# version: '3'
+# services:
+#   streamlit:
+#     build:
+#       context: ./frontend
+#     ports:
+#       - "8501:8501"
+#     depends_on:
+#       - fastapi
+#   fastapi:
+#     build:
+#       context: ./backend
+#     ports:
+#       - "8000:8000"
+
+version: '3.8'
+
+services:
+  backend:
+    # if you want to build the image from the Dockerfile, then use the 'build' key.
+    # Uncomment the following lines to build the image from the Dockerfile. and comment the 'image' key.
+    # build: .
+      # context: ./backend
+      # dockerfile: Dockerfile
+    image: fastapi-app
+    ports:
+      # Definition of network/port mapping between host and container, host:container.
+      # Exposes the port of the host and maps it to the port of the container.
+      # The value for the host port is taken from the BACKEND_PORT envirioment variable.
+      # If the BACKEND_PORT is not set, then the default value 8000 will be used.
+      # The value for the container port is always 8000.
+      - "${BACKEND_PORT:-8080}:8080"
+    environment:
+      # Passing configuration information for the application running inside the container.
+      # In this case fastapi application will get the port information will from PORT env variable,
+      # which in turn will get the value from the env variable BACKEND_PORT. If BACKEND_PORT is not set
+      # then the default value 8000 will be used. --> PORT=8000.
+      - PORT=${BACKEND_PORT:-8080}
+
+  frontend:
+    # build: .
+    #   context: ./frontend
+    #   dockerfile: Dockerfile
+    image: streamlit-app
+    ports:
+      - "${FRONTEND_PORT:-8051}:8051"
+    environment:
+      - PORT=${FRONTEND_PORT:-8051}
+      - ENDPOINT_URL=http://backend:${BACKEND_PORT:-8080/classify}
+    depends_on:
+      - backend

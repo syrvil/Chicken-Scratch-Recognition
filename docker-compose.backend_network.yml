@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  backend:
+    image: fastapi-app
+    environment:
+      - PORT=8080
+    networks:
+      - backend_network  # Connect backend only to a specific network
+    expose:
+      - "8080"  # Expose to other containers in the same network, but not to the host
+
+  frontend:
+    image: streamlit-app
+    ports:
+      - "${FRONTEND_PORT:-8051}:8051"  # Frontend is accessible from the host network
+    environment:
+      - PORT=${FRONTEND_PORT:-8051}
+      - ENDPOINT_URL=http://backend:8080/classify  # The frontend can reach the backend via the Docker network
+    depends_on:
+      - backend
+    networks:
+      - backend_network  # Connect frontend to the same backend network
+
+networks:
+  backend_network:
+    driver: bridge  # Use a custom bridge network to isolate the backend
