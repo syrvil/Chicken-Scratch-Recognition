@@ -29,7 +29,7 @@ EXPOSE 8501
 # Set the command to run the Streamlit app
 # NOTE! The server.addreas 0.0.0.0 is the docker container's private network address, 
 # not the host machine's address, tough it is accessible from the host machine 0.0.0.0/127.0.0.1/localhost
-# addresses as well. Container's address 127.0.0.0 or localhost, it will not be accessible 
+# addresses as well. Container's address 127.0.0.0 or localhost, will not be accessible 
 # from the host machine, because the traffic stays inside the container reragdless of port binding.
 # To pass environment variables to the Streamlit app, we can use as a shell command.
 CMD ["sh", "-c", "streamlit run app.py --server.address=0.0.0.0 --server.port=${PORT:-8051}"]

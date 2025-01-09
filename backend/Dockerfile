@@ -14,15 +14,6 @@ RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir transformers~=4.47.1 && \
     rm -rf /root/.cache/pip
 
-# Final stage
-#FROM python:3.10-slim
-
-# Set the working directory
-#WORKDIR /app
-
-# Copy the installed dependencies from the build stage
-#COPY --from=builder /app /app
-
 # Copy application files into the container
 COPY main.py /app/
 COPY model.py /app/

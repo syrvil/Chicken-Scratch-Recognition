@@ -1,11 +1,10 @@
 # This file is used to run the services in a private docker network.
-# The back-end is not exposed to the host, it will be accessible only 
+# The back-end is not exposed to the host (no ports: key), it will be accessible only 
 # from the front-end and/or other service in the same Docker network
-# craated automatically by docker-compose.
+# created automatically by docker-compose.
 # Back-end is accessible from the front-end using the service name 'backend'
 # and the Dokcer network will resolve the service name to the IP address of 
 # the back-end service. 
-# We could also define and name the network explicitly using the 'networks' key.
 
 version: '3.8'
 

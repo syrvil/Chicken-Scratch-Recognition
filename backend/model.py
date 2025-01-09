@@ -7,21 +7,10 @@ import os
 
 # get the absolute path the current directory
 current_dir = os.path.dirname(os.path.abspath(__file__))
+
 # define the path to the local model directory
 LOCAL_MODEL_PATH = os.path.join(current_dir, "models")
-
-# Define constants
 MODEL_NAME = "farleyknight/mnist-digit-classification-2022-09-04"
-# Jos sovellus käynnistetään ilman Docker-ympäristöä ylempänä olevasta kansiosta
-# muodostuu "models"-kansio sen alle, ja malli tallennetaan sinne. Jos taas sovellus
-# käynnistetään samasta kansiosta, jossa tämä tiedosto on, malli tallennetaan suoraan
-# "models"-kansioon. Tämä on haluttu toimintatapa, jos sovelluksesta halutaan tehdä
-# Docker-kontti, niin tällöin malli on helmpompi tallentaa osaksi konttia.
-# Tällöin mallia ei tarvitse ladata joka kerta, kun kontti käynnistetään. Tämä nopeuttaa
-# sovelluksen käynnistymistä ja vähentää mallin lataamiseen kuluvaa aikaa. Lisäksi jos
-# palvelu pyörii pilvessä, mallin lataaminen joka kerta voi aiheuttaa ylimääräisiä kustannuksia.
-# dot-env:iä voisi käyttää, jos haluttaisiin määrittää mallin sijainti ympäristömuuttujana.
-
 IMAGE_SIZE = (224, 224)
 MEAN = [0.5, 0.5, 0.5]
 STD = [0.5, 0.5, 0.5]

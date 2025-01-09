@@ -4,21 +4,6 @@ import numpy as np
 from backend_api import BackendAPI 
 import os
 
-### Backend API-url täytyy muuttaa sen mukaan onko käytössä paikallinen vai Docker-ympäristö
-### Docker-ympäristössä sovellukset kommunikoivat toistensa kanssa palvelunimien avulla
-### Jos kontit on käynnistetty erikseen, toimivat ne omissa erillisissä Docker-verkkoavaruuksissaan
-### eivätkä löydä toisiaan. 
-### Kun sovellukset käynnistetään yhdessä Docker Compose -tiedostolla, ne ovat samassa verkkoavaruudessa.
-### Normaalisti sovellukset kommunikoivat toistensa kanssa localhost-osoitteella ja porttinumerolla 
-
-# Initialize the backend API without Docker, default URL is http://127.0.0.1:8000/classify
-#backend_api = BackendAPI()
-# Initialize the backend API with Docker Compose serice name, default URL is http://fastapi:8000/classify
-#backend_api = BackendAPI(url="http://fastapi:8000/classify")
-# Initialize the backend API with Docker by exposing the FastAPI service to the host machine 
-
-#port = int(os.environ.get("PORT", 8080))
-
 backend_api = BackendAPI() 
 
 # Function to initialize session state
@@ -28,7 +13,7 @@ def initialize_session_state():
     if "prediction" not in st.session_state:
         st.session_state.prediction = None
     if "success_message" not in st.session_state:
-        st.session_state.success_message = None  # Initialize to None
+        st.session_state.success_message = None 
 
 # Function to display top 3 most probable digits
 def display_top_3_probabilities():
