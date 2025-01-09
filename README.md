@@ -77,7 +77,7 @@ Pip is not necessarily the best option to install packages in conda, but let's u
 pip install -r requirements.txt
 ```
 The directory structure of the project is as follows:
-``
+```
 Chicken-Scratch-Recognition/
 ├── backend
 │   ├── Dockerfile
@@ -99,7 +99,7 @@ Chicken-Scratch-Recognition/
 ├── README.md
 ├── requirements.txt
 └── run.sh
-``
+```
 
 Go to the frontend directory and start Streamlit:
 
@@ -514,8 +514,6 @@ Implement deployments of containers to Google Cloud Run using a GitHub Actions d
 
 ### Fine-Tuning the Inference Time
 
-* Batch Inference: If possible, batch multiple requests together to process them in a single forward pass. This reduces the per-request overhead.
-
 #### Optimize the PyTorch Model
 
 * Quantization: Convert the model to a lower precision (e.g., int8) to reduce computation.
@@ -525,9 +523,10 @@ Implement deployments of containers to Google Cloud Run using a GitHub Actions d
 
 #### Docker Image Size Optimization
 
-#### TorchScript
+#### TorchScript and TorchServe
 
-* Convert the model to a TorchScript version for faster execution.
+* Convert the model to a [TorchScript](https://pytorch.org/docs/stable/jit.html) or [TorchServe](https://pytorch.org/serve/) version for faster execution.
+* Serve the model as REST API with TorchServe
 
 #### GPU Support
 
