@@ -459,7 +459,7 @@ gcloud container images delete gcr.io/PROJECT_ID/IMAGE_NAME
 gcloud run regions list
 ```
 
-7. Ensure Your Container Listens on Port 8080. 
+7. Ensure Your Container Listens on Port 8080.
 
 Cloud Run requires the container to listen on ```8080```. Update the backend's ```CMD``` instruction in the Dockerfile to reflect this.
 Cloud Run automatically injects the ```PORT``` environment variable into the container. If your application doesn't explicitly set the port, ensure that it uses this variable.
