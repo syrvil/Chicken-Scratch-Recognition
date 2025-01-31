@@ -36,6 +36,8 @@ The idea for the application is not my own. I encountered a [GitHub repo](https:
 
 In the app, the user can draw a number, or more like a chicken scratch, on the Streamlit canvas. When the user presses the "Classify" button, the image on the canvas is sent to the FastAPI endpoint, where it gets processed by PyTorch using a pretrained neural network model from Hugging Face. The model returns probabilities for the number, or Chicken Scratch, and prints the most probable number as a prediction.
 
+![Screenshot](./assets/screenshot.png)
+
 ## Streamlit - FastAPI - PyTorch & Hugging Face
 
 Here are some main challenges I encountered with the applications. Issues with Docker and Google Cloud Run are covered in their own sections.
